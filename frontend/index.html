@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Recommendation System</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-gray-900 text-white min-h-screen">
+    <!-- Header -->
+    <header class="bg-gray-800 py-6 shadow-lg">
+        <div class="container mx-auto px-4">
+            <h1 class="text-3xl font-bold text-center">
+                <i class="fas fa-film mr-3 text-purple-500"></i>
+                Movie Recommendation System
+            </h1>
+            <p class="text-center text-gray-400 mt-2">Discover your next favorite movie</p>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8">
+        <!-- Tabs Navigation -->
+        <div class="flex justify-center mb-8">
+            <div class="flex space-x-2 bg-gray-800 p-1 rounded-lg">
+                <button id="tab-movie" class="tab-btn active px-6 py-2 rounded-md transition">By Movie</button>
+                <button id="tab-preferences" class="tab-btn px-6 py-2 rounded-md transition">By Preferences</button>
+                <button id="tab-browse" class="tab-btn px-6 py-2 rounded-md transition">Browse All</button>
+            </div>
+        </div>
+
+        <!-- Search by Movie -->
+        <div id="panel-movie" class="tab-panel active">
+            <div class="max-w-2xl mx-auto bg-gray-800 p-6 rounded-xl shadow-lg">
+                <h2 class="text-2xl font-semibold mb-6">Find Similar Movies</h2>
+                <div class="relative">
+                    <input type="text" id="movie-search" placeholder="Search for a movie..." 
+                           class="w-full px-4 py-3 bg-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500">
+                    <div id="search-results" class="absolute z-10 w-full bg-gray-800 mt-1 rounded-lg shadow-lg hidden max-h-60 overflow-y-auto"></div>
+                </div>
+                <div class="mt-6">
+                    <button id="get-recommendations" class="w-full bg-purple-600 hover:bg-purple-700 py-3 rounded-lg font-semibold transition">
+                        Get Recommendations
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Search by Preferences -->
+        <div id="panel-preferences" class="tab-panel hidden">
+            <div class="max-w-2xl mx-auto bg-gray-800 p-6 rounded-xl shadow-lg">
+                <h2 class="text-2xl font-semibold mb-6">Find Movies by Preferences</h2>
+                <div class="space-y-4">
+                    <div>
+                        <label class="block mb-2">Genres (comma separated)</label>
+                        <input type="text" id="pref-genres" placeholder="e.g. Action, Drama, Comedy" 
+                               class="w-full px-4 py-3 bg-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500">
+                    </div>
+                    <div>
+                        <label class="block mb-2">Director</label>
+                        <input type="text" id="pref-director" placeholder="e.g. Christopher Nolan" 
+                               class="w-full px-4 py-3 bg-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500">
+                    </div>
+                    <div>
+                        <label class="block mb-2">Keywords (comma separated)</label>
+                        <input type="text" id="pref-keywords" placeholder="e.g. space, superheroes, adventure" 
+                               class="w-full px-4 py-3 bg-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500">
+                    </div>
+                    <div>
+                        <button id="get-pref-recommendations" class="w-full bg-purple-600 hover:bg-purple-700 py-3 rounded-lg font-semibold transition">
+                            Find Movies
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Browse All Movies -->
+        <div id="panel-browse" class="tab-panel hidden">
+            <div class="max-w-6xl mx-auto">
+                <h2 class="text-2xl font-semibold mb-6">Browse All Movies</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6" id="all-movies-list">
+                    <!-- Movies will be loaded here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Results Section -->
+        <div id="results-section" class="mt-12 hidden">
+            <h2 class="text-2xl font-semibold mb-6 text-center">Recommended Movies</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6" id="results-container">
+                <!-- Results will be displayed here -->
+            </div>
+        </div>
+
+        <!-- Loading Spinner -->
+        <div id="loading" class="fixed inset-0 bg-gray-900 bg-opacity-70 flex items-center justify-center hidden z-50">
+            <div class="bg-gray-800 p-6 rounded-lg flex items-center">
+                <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-purple-500 mr-3"></div>
+                <span>Loading recommendations...</span>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 py-6 mt-12">
+        <div class="container mx-auto px-4 text-center text-gray-400">
+            <p>Movie Recommendation System &copy; 2023</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
